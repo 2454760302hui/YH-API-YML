@@ -727,7 +727,7 @@ class YHShell(cmd.Cmd):
   docs               - 启动文档服务器
 
 {Fore.GREEN + Style.BRIGHT}📦 项目生成:{Style.RESET_ALL}
-  generate [name]    - 生成完整的测试项目目录，目录中需要有完整的测试信息，执行run.py ,可以正确执行，便于 用户 更新 测试项目内容，即可运行测试
+  generate [name]    - 生成完整的测试项目目录，目录中需要有完整的测试信息，执行run.py，可以正确执行，便于用户更新测试项目内容，即可运行测试
   6                  - 快捷生成完整测试项目
 
 {Fore.CYAN + Style.BRIGHT}🐚 Shell命令模式:{Style.RESET_ALL}

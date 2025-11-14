@@ -781,3 +781,9 @@ class RunYaml(object):
         print(f"📋 报告目录: allure-report/")
         print("🚀 如需重新查看报告，请运行: allure serve allure-results")
         print("="*60)
+
+    def close_connections(self):
+        """关闭所有连接"""
+        # 如果有WebSocket连接，关闭它
+        # 这里可以添加其他需要关闭的连接
+        pass

@@ -17,7 +17,7 @@ tests:
       url: "/get"
       params:
         test_param: "framework_test"
-        timestamp: "{{current_timestamp}}"
+        timestamp: "{{current_time()}}"
     validate:
       - check: status_code
         expected: 200

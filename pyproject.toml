@@ -97,9 +97,9 @@ Repository = "https://github.com/api-test-framework/api-test-framework.git"
 [project.scripts]
 api-test = "api_test_framework.cli:main"
 atf = "api_test_framework.cli:main"
-api-test-shell = "api_test_framework.shell:main"
-api-test-server = "api_test_framework.server:main"
-api-test-kobe = "api_test_framework.kobe_shell:main"
+api-test-shell = "yh_shell:main"
+# api-test-server = "api_test_framework.server:main"
+# api-test-kobe = "api_test_framework.kobe_shell:main"
 
 [project.entry-points.pytest11]
 api_test_framework = "plugin"
