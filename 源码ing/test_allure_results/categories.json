@@ -1,9 +1,0 @@
-[
-  {
-    "name": "API错误",
-    "matchedStatuses": [
-      "failed"
-    ],
-    "messageRegex": ".*API.*"
-  }
-]
