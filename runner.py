@@ -668,11 +668,24 @@ class RunYaml(object):
                 "query_sql": db.query_sql,
                 "execute_sql": db.execute_sql
             }
-        except Exception as msg:
-            log.error(f'mysql init error: {msg}')
+        except ImportError as e:
+            log.error(f'MySQL模块未安装: {e}')
+            log.info('提示: 安装MySQL支持 -> pip install pymysql')
             return {
-                "query_sql": lambda x: log.error("MYSQL connect error in config.py"),
-                "execute_sql": lambda x: log.error("MYSQL connect error in config.py")
+                "query_sql": lambda x: log.error("MySQL模块未安装，请运行: pip install pymysql"),
+                "execute_sql": lambda x: log.error("MySQL模块未安装，请运行: pip install pymysql")
+            }
+        except AttributeError as e:
+            log.error(f'MySQL配置缺失必要属性: {e}')
+            return {
+                "query_sql": lambda x: log.error("MySQL配置不完整，请检查config.py"),
+                "execute_sql": lambda x: log.error("MySQL配置不完整，请检查config.py")
+            }
+        except Exception as e:
+            log.error(f'MySQL初始化错误: {type(e).__name__}: {e}')
+            return {
+                "query_sql": lambda x: log.error(f"MySQL连接错误: {e}"),
+                "execute_sql": lambda x: log.error(f"MySQL连接错误: {e}")
             }
 
     @staticmethod

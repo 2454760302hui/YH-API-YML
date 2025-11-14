@@ -1,0 +1,43 @@
+# YH API Testing Framework - Full Installation
+# 包含所有功能的完整依赖
+
+# 核心依赖
+-r requirements.txt
+
+# 报告功能
+allure-pytest>=2.12.0
+jinja2>=3.1.0
+lxml>=4.9.0
+
+# 文档服务器
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+
+# 数据库支持
+pymysql>=1.0.2
+redis>=4.5.0
+
+# WebSocket和Socket支持
+websockets>=11.0.0
+paramiko>=3.0.0
+
+# 数据处理
+faker>=19.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+
+# 高级HTTP功能
+httpx>=0.24.0
+aiohttp>=3.8.0
+
+# 命令行增强
+rich>=13.0.0
+click>=8.1.0
+
+# 其他工具
+cryptography>=41.0.0
+schedule>=1.2.0
+python-dotenv>=1.0.0
+psutil>=5.9.0

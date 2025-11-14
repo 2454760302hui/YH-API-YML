@@ -13,6 +13,18 @@ from urllib3.util.retry import Retry
 from logging_config import get_logger
 from exceptions import RequestError, ConnectTimeout, MaxRetryError, ConnectError
 
+# 导入性能配置（如果存在）
+try:
+    from performance_config import get_optimized_http_config
+    PERFORMANCE_CONFIG = get_optimized_http_config()
+except ImportError:
+    PERFORMANCE_CONFIG = {
+        'pool_connections': 50,
+        'pool_maxsize': 100,
+        'max_retries': 3,
+        'pool_block': False,
+    }
+
 log = get_logger()
 
 
@@ -55,15 +67,21 @@ class HttpClient:
         if proxies:
             self.session.proxies.update(proxies)
         
-        # 配置重试策略
+        # 配置重试策略（使用性能优化配置）
         retry_strategy = Retry(
-            total=retry_count,
+            total=PERFORMANCE_CONFIG.get('max_retries', retry_count),
             backoff_factor=retry_backoff_factor,
             status_forcelist=[429, 500, 502, 503, 504],
             allowed_methods=["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE", "POST"]
         )
         
-        adapter = HTTPAdapter(max_retries=retry_strategy)
+        # 使用优化的连接池配置
+        adapter = HTTPAdapter(
+            max_retries=retry_strategy,
+            pool_connections=PERFORMANCE_CONFIG.get('pool_connections', 50),
+            pool_maxsize=PERFORMANCE_CONFIG.get('pool_maxsize', 100),
+            pool_block=PERFORMANCE_CONFIG.get('pool_block', False)
+        )
         self.session.mount("http://", adapter)
         self.session.mount("https://", adapter)
         
